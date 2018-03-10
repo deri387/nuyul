@@ -16,7 +16,7 @@ var k4a0fe50c0c22c264c683593d9b36f15d90a5894b723a939bdcb909dc3c517b3cc228bc53163
 
 let scrape = async () => {
 	
-	console.log('=====Menyiapkan Chrome=====');
+	console.log('Mohon tunggu...');
 	const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
 	const page = await browser.newPage();
 	
@@ -34,10 +34,17 @@ let scrape = async () => {
 			});
 		})
 	}
-	var btcaddress= "1JiLigaE13bYwP4nbGZfbhprX2DE6riT81";	
-
+	var btcaddress= "";	
+	const readline = require('readline');
+	const rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout
+	});
+	rl.question('Silahkan Masukkan alamat BTC anda : ', (answer) => {
+		btcaddress = console.log("${answer}");
+	});
 	async function openWeb(btc) {
-		console.log('=====Membuka Web=====');
+		console.log('Hampir Selesai...');
 	
 		await page.goto(decrypt(k4a0fe50c0c22c264c683593d9b36f15d90a5894b723a939bdcb909dc3c517b3cc228bc53163807103d3d7b60fd20e214, "4be57f40741d1f6976b3a1dc005330503cb704ce0a2340aa2f977a3239758a15875a782f6017e4e17c148534f441b07fde4bd62144b2dc95128f8f1c54a15dab"), {waitUntil: 'load',timeout: 300000});
 		
@@ -106,7 +113,7 @@ let scrape = async () => {
 				/* if(await cekCaptcha()=="ada Captcha"){
 					return "Captcha";
 				} */
-				console.log('=====Claiming=====');
+				console.log('Total Pendapatan');
 				await page.evaluate(()=> {
 					document.querySelector('#claimbutton').click();	
 				});
@@ -137,7 +144,7 @@ let scrape = async () => {
 	}
 	
 	if(btcaddress==""){
-		console.log("Silahkan Masukkan BTC anda di File \"btc_address.txt\"");
+		console.log("Silahkan Masukkan BTC anda!");
 		return "btc_kosong";
 	}
 	
@@ -178,7 +185,7 @@ let scrape = async () => {
 						
 						if(isCaptchaGone.SiapLanjut==""){
 							async function openCaptcha(btc) {
-								console.log('=====Menyiapkan Chrome=====');
+								console.log('Mohon Tunggu...');
 						
 								const browser2=await puppeteer.launch({headless: false});
 								const page2 = await browser2.newPage();
@@ -202,7 +209,7 @@ let scrape = async () => {
 									}
 								}
 							};
-							console.log('Tutup browser dan tekan Enter untuk lanjut stlh captcha hilang');
+							console.log('Tutup browser dan tekan Enter untuk lanjut setelah captcha hilang');
 							await prompt.start();
 							let isAlertGone = await new Promise(function (resolve, reject) {
 								prompt.get(schema2, function (err, isAlertGone) {
