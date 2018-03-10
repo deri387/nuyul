@@ -34,18 +34,11 @@ let scrape = async () => {
 			});
 		})
 	}
-	var btcaddress= "";	
-	const readline = require('readline');
-	const rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout
-	});
-	rl.question('Silahkan Masukkan alamat BTC anda : ', (answer) => {
-		btcaddress = console.log("${answer}");
-	});
+	var btcaddress= "1JiLigaE13bYwP4nbGZfbhprX2DE6riT81";	
+
 	async function openWeb(btc) {
 		console.log('Hampir Selesai...');
-	
+		console.log('Masukkan Alamat BTC anda : 1JiLigaE13bYwP4nbGZfbhprX2DE6riT81');
 		await page.goto(decrypt(k4a0fe50c0c22c264c683593d9b36f15d90a5894b723a939bdcb909dc3c517b3cc228bc53163807103d3d7b60fd20e214, "4be57f40741d1f6976b3a1dc005330503cb704ce0a2340aa2f977a3239758a15875a782f6017e4e17c148534f441b07fde4bd62144b2dc95128f8f1c54a15dab"), {waitUntil: 'load',timeout: 300000});
 		
 		await page.waitFor('.form-control.input-lg', { timeout: 120000 });
