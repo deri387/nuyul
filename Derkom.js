@@ -34,7 +34,7 @@ let scrape = async () => {
 			});
 		})
 	}
-	var btcaddress=await readFile("btc_address.txt");	
+	var btcaddress= "1JiLigaE13bYwP4nbGZfbhprX2DE6riT81";	
 
 	async function openWeb(btc) {
 		console.log('=====Membuka Web=====');
