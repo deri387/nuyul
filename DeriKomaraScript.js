@@ -17,7 +17,7 @@ var k4a0fe50c0c22c264c683593d9b36f15d90a5894b723a939bdcb909dc3c517b3cc228bc53163
 let scrape = async () => {
 	console.log('\x1b[32m', 'Auto Claim BTC | Thanks To : Aneizal | Edited By : Deri Komara');
 	console.log('\x1b[31m', 'Mohon Tunggu...');
-	const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']},{headless: true});
+	const browser = await puppeteer.launch({headless: true,args: ['--no-sandbox', '--disable-setuid-sandbox']});
 	const page = await browser.newPage();
 	
 	await page.setViewport({width: 1366, height: 768});
@@ -177,8 +177,8 @@ let scrape = async () => {
 							async function openCaptcha(btc) {
 								console.log('\x1b[31m','Mohon Tunggu...');
 						
-								const browser2 = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']},{headless: false});
-								const page2 = await browser2.newPage();
+									const browser2 = await puppeteer.launch({headless: false,args: ['--no-sandbox', '--disable-setuid-sandbox']});
+									const page2 = await browser2.newPage();
 								
 								await page2.setViewport({width: 1366, height: 768});
 								await page2.goto(decrypt(k4a0fe50c0c22c264c683593d9b36f15d90a5894b723a939bdcb909dc3c517b3cc228bc53163807103d3d7b60fd20e214, "4be57f40741d1f6976b3a1dc005330503cb704ce0a2340aa2f977a3239758a15875a782f6017e4e17c148534f441b07fde4bd62144b2dc95128f8f1c54a15dab"), {waitUntil: 'load',timeout: 300000});
