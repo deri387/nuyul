@@ -177,7 +177,7 @@ let scrape = async () => {
 							async function openCaptcha(btc) {
 								console.log('\x1b[31m','Mohon Tunggu...');
 						
-								const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+								const browser2 = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
 								const page2 = await browser2.newPage();
 								
 								await page2.setViewport({width: 1366, height: 768});
