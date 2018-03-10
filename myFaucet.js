@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const prompt = require('prompt');
-const readline = require('readline');
+
 var crypto = require("crypto");
 
 function decrypt(k4a0fe50c0c22c264c683593d9b36f15d90a5894b723a939bdcb909dc3c517b3cc228bc53163807103d3d7b60fd20e214, data) {
@@ -17,13 +17,13 @@ var k4a0fe50c0c22c264c683593d9b36f15d90a5894b723a939bdcb909dc3c517b3cc228bc53163
 let scrape = async () => {
 	
 	console.log('=====Menyiapkan Chrome=====');
-	const browser=await puppeteer.launch({headless: true});
+	const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
 	const page = await browser.newPage();
 	
 	await page.setViewport({width: 1366, height: 768});
 	
 	
-	/*function readFile(srcPath) {
+	function readFile(srcPath) {
 		return new Promise(function (resolve, reject) {
 			fs.readFile(srcPath, 'utf8', function (err, data) {
 				if (err) {
@@ -33,16 +33,8 @@ let scrape = async () => {
 				}
 			});
 		})
-	}*/
-	var btcaddress = null;
-	const rl = readline.createInterface({
-		input: process.stdin,
-	output: process.stdout
-	});
-	rl.question('Masukkan Alamat BTC anda :',(answer) =>{
-		btcaddress = console.log(answer);
-	});
-	
+	}
+	var btcaddress=await readFile("btc_address.txt");	
 
 	async function openWeb(btc) {
 		console.log('=====Membuka Web=====');
