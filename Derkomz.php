@@ -141,7 +141,7 @@ curl_setopt(${${"GLOBALS"}["lnosvy"]},CURLOPT_COOKIEFILE,"cookie");${"GLOBALS"}[
 ${$wulgtgbrn}=curl_exec(${${"GLOBALS"}["kimnxkmjgk"]});
 curl_close(${${"GLOBALS"}["whlwabvsps"]});
 ${"GLOBALS"}["zfpviu"]="pr";
-${${"GLOBALS"}["svwsvvsn"]}=explode("<div class=\"alert alert-success">",${${"GLOBALS"}["vloixqxdyn"]});
+${${"GLOBALS"}["svwsvvsn"]}=explode("<div class= 'alert alert-success'>",${${"GLOBALS"}["vloixqxdyn"]});
 ${${"GLOBALS"}["lukforhyyof"]}=explode("</div>",${${"GLOBALS"}["svwsvvsn"]}[1]);
 ${${"GLOBALS"}["cvsjjbhev"]}="$two[0]";
 return${${"GLOBALS"}["zfpviu"]};
