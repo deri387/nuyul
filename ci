@@ -1,0 +1,198 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kategori</title>
+    <?= $head ?>
+</head>
+
+<body>
+    <?= $sidebar ?>
+    <div id="content-wrapper">
+        <div class="container-fluid">
+            <center>
+                <?php
+            if ($this->session->flashdata('error')) {
+                echo "<div class='alert alert-danger'>";
+                echo $this->session->flashdata('error');
+                echo "</div>";
+            }
+            ?>
+            </center>
+            <div style="text-align: left;max-width:100%;font-weight:300">
+                <h4 style="font-weight:300"><i class="fas fa-pencil-alt" style="font-size:40px;"></i> <span style="color:#4B96CB;margin-left:10px;">
+                        Kategori</span></h4>
+            </div>
+            <div class="clear:both;">&nbsp;</div>
+            <div class="card">
+                <div class="card-body">
+                    <button class="btn btn-success" onclick="tambah();"><i class="fas fa-plus"></i> Tambah Kategori</button>
+                    <div class="clear:both;">&nbsp;</div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover" style="width:100%" id="tables">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th style="width:3%;">No</th>
+                                    <th>Kategori</th>
+                                    <th style="width:10%;">Opsi</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <?php 
+                                if($list !== false){
+                                    $no = 0;
+                                    foreach($list as $r){
+                                        $no++;
+                                        ?>
+                                <tr>
+                                    <td>
+                                        <?= $no ?>
+                                    </td>
+                                    <td>
+                                        <?= $r->kategori ?>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary" onclick="edit('<?php echo $r->kategori;?>','<?php echo Enc($r->id);?>');"><i class="fas fa-pencil-alt"></i></button>
+                                        <button class="btn btn-danger" onclick="hapus('<?php echo Enc($r->id);?>');"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <?php }
+                                }else{ ?>
+                                <tr>
+                                    <td colspan="3">
+                                        <center>Data kosong</center>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-lg modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-plus"></i> Tambah Kategori</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?= form_open('tambahkategori');?>
+                    <div class="form-group">
+                        <label for="kategori">Kategori</label>
+                        <input type="text" class="form-control" name="kategori" id="kategori" autofocus required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Tutup</button>
+                    <button class="btn btn-primary" type="submit">Simpan</button>
+                </div>
+                <?= form_close();?>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-lg modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-pencil-alt"></i> Edit Kategori</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?= form_open('ubahkategori');?>
+                    <div class="form-group">
+                        <label for="kategori">Kategori</label>
+                        <input type="text" class="form-control" name="kategori" id="kategori-edit" autofocus required>
+                        <input type="hidden" name="idkategori" id="idkategori">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Tutup</button>
+                    <button class="btn btn-primary" type="submit">Simpan</button>
+                </div>
+                <?= form_close();?>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-trash"></i> Anda yakin ingin menghapus data ini?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?= form_open('hapuskategori');?>
+                    <input type="hidden" name="idkategori" id="idkategori_hapus">
+                    Pilih 'hapus' untuk melanjutkan penghapusan data.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                    <button class="btn btn-primary" type="submit">Hapus</button>
+                </div>
+                <?= form_close();?>
+            </div>
+        </div>
+    </div>
+    <?= $footer ?>
+    <script>
+        $(document).ready(function () {
+            var dataTable = $('#tables').DataTable({
+                "aLengthMenu": [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, "All"]
+                ],
+                "responsive": true,
+                "ordering": false,
+                "order": [
+                    [1, "desc"]
+                ],
+                "oLanguage": {
+                    "sInfo": "&nbsp;&nbsp;_START_ dari _TOTAL_ kategori.",
+                    "sEmptyTable": "Data kategori kosong",
+                    "sSearch": "Cari disini :",
+                    "sLengthMenu": " _MENU_ ",
+                    "oPaginate": {
+                        "sPrevious": "&#8592;",
+                        "sNext": "&#8594;"
+                    }
+                }
+            });
+        });
+
+        function tambah() {
+            $("#tambahModal").modal({
+                backdrop: 'static'
+            });
+        }
+        function edit(kategori,id) {
+            $("#editModal").modal({
+                backdrop: 'static'
+            });
+            $("#kategori-edit").val(kategori);
+            $("#idkategori").val(id);
+        }
+        function hapus(id) {
+            $("#deleteModal").modal({
+                backdrop: 'static'
+            });
+            $("#idkategori_hapus").val(id)
+        }
+    </script>
+</body>
+
+</html>
